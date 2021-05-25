@@ -1,13 +1,28 @@
 pub struct ColorFg(AnsiBuilder);
 
 impl ColorFg {
+    pub fn bright_blue(mut self) -> AnsiBuilder {
+        self.0.0.push_str("\x1B[94m");
+        self.0
+    }
+
     pub fn bright_green(mut self) -> AnsiBuilder {
         self.0.0.push_str("\x1B[92m");
         self.0
     }
 
+    pub fn blue(mut self) -> AnsiBuilder {
+        self.0.0.push_str("\x1B[94m");
+        self.0
+    }
+
     pub fn gray(mut self) -> AnsiBuilder {
         self.0.0.push_str("\x1B[90m");
+        self.0
+    }
+
+    pub fn green(mut self) -> AnsiBuilder {
+        self.0.0.push_str("\x1B[32m");
         self.0
     }
 
