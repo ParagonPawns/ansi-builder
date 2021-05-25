@@ -3,6 +3,10 @@ name = "ansi-builder"
 version = "0.1.0"
 authors = ["Diego-Henriquez <diego@paragonpawns.com>"]
 edition = "2018"
+license = "MIT"
+readme = "README.md"
+repository = "https://github.com/ParagonPawns/ansi-builder"
+description = "Rust crate that will have tools to construct ansi control sequences."
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
