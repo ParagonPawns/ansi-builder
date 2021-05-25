@@ -12,7 +12,7 @@ impl ColorFg {
     }
 
     pub fn blue(mut self) -> AnsiBuilder {
-        self.0.0.push_str("\x1B[94m");
+        self.0.0.push_str("\x1B[34m");
         self.0
     }
 
