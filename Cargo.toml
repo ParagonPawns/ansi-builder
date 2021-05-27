@@ -11,3 +11,7 @@ description = "Rust crate that will have tools to construct ansi control sequenc
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+
+[[example]]
+name = "color"
+path = "examples/color.rs"
