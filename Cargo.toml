@@ -21,3 +21,7 @@ windows = "0.10.0"
 [[example]]
 name = "color"
 path = "examples/color.rs"
+
+[[example]]
+name = "style"
+path = "examples/styles.rs"

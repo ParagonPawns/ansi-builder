@@ -1,3 +1,13 @@
+macro_rules! ansi_sgr {
+    ($func:ident, $value:expr) => {
+        #[inline]
+        pub fn $func(mut self) -> AnsiBuilder {
+            self.0.0.push_str(concat!("\x1B[",$value, "m"));
+            self.0
+        }
+    };
+}
+
 pub mod color;
 pub mod cursor;
 pub mod style;
@@ -45,6 +55,7 @@ pub fn enable_ansi_color() -> bool {
         true
     }
 }
+
 
 pub enum EraseMode {
     CursorToEnd = 0,
