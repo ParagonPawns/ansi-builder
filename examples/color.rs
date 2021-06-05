@@ -1,4 +1,9 @@
 fn main() {
+    #[cfg(windows)]
+    if !ansi_builder::enable_ansi_color() {
+        println!("Failed to enable_ansi_color.");
+    }
+
     AnsiBuilder::new()
         .text("Hello, World! ")
         .color().fg().red()

@@ -12,6 +12,12 @@ description = "Rust crate that will have tools to construct ansi control sequenc
 
 [dependencies]
 
+[target.'cfg(windows)'.dependencies]
+windows = "0.10.0"
+
+[target.'cfg(windows)'.build-dependencies]
+windows = "0.10.0"
+
 [[example]]
 name = "color"
 path = "examples/color.rs"

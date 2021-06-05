@@ -2,6 +2,50 @@ pub mod color;
 pub mod cursor;
 pub mod style;
 
+#[cfg(windows)]
+::windows::include_bindings!();
+
+#[cfg(windows)]
+pub fn enable_ansi_color() -> bool {
+    use Windows::Win32::System::WindowsProgramming::{
+        GetStdHandle,
+        STD_OUTPUT_HANDLE,
+    };
+
+    use Windows::Win32::System::Console::{
+        CONSOLE_MODE,
+        ENABLE_PROCESSED_OUTPUT,
+        ENABLE_VIRTUAL_TERMINAL_PROCESSING,
+        GetConsoleMode,
+        SetConsoleMode,
+    };
+
+    unsafe {
+        let std_out_handle = GetStdHandle(STD_OUTPUT_HANDLE);
+        let mut console_mode = CONSOLE_MODE::default();
+        if !GetConsoleMode(std_out_handle, &mut console_mode).as_bool() {
+            return false
+        }
+
+        let is_ansi_enabled =
+            (console_mode & ENABLE_PROCESSED_OUTPUT).0 != 0 &&
+            (console_mode & ENABLE_VIRTUAL_TERMINAL_PROCESSING).0 != 0;
+
+        if is_ansi_enabled {
+            return true
+        }
+
+        if !SetConsoleMode(
+            std_out_handle,
+            console_mode | ENABLE_PROCESSED_OUTPUT | ENABLE_VIRTUAL_TERMINAL_PROCESSING
+        ).as_bool() {
+            return false
+        }
+
+        true
+    }
+}
+
 pub enum EraseMode {
     CursorToEnd = 0,
     CursorToBegin = 1,
