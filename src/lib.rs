@@ -17,11 +17,9 @@ pub mod style;
 
 #[cfg(windows)]
 pub fn enable_ansi_color() -> bool {
-    use Windows::Win32::System::WindowsProgramming::{
-        GetStdHandle,
-        STD_OUTPUT_HANDLE,
-    };
-
+    use std::os::windows::io::AsRawHandle;
+    use std::io::stdout;
+    use Windows::Win32::System::SystemServices::HANDLE;
     use Windows::Win32::System::Console::{
         CONSOLE_MODE,
         ENABLE_PROCESSED_OUTPUT,
@@ -30,8 +28,8 @@ pub fn enable_ansi_color() -> bool {
         SetConsoleMode,
     };
 
+    let std_out_handle = HANDLE(stdout().as_raw_handle() as isize);
     unsafe {
-        let std_out_handle = GetStdHandle(STD_OUTPUT_HANDLE);
         let mut console_mode = CONSOLE_MODE::default();
         if !GetConsoleMode(std_out_handle, &mut console_mode).as_bool() {
             return false

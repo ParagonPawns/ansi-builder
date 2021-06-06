@@ -8,9 +8,8 @@ fn main() {
             GetConsoleMode,
             SetConsoleMode
         },
-        Windows::Win32::System::WindowsProgramming::{
-            GetStdHandle,
-            STD_OUTPUT_HANDLE
+        Windows::Win32::System::SystemServices::{
+            HANDLE
         }
     };
 }

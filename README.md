@@ -3,6 +3,11 @@ ANSI builder is a library that allows you to build and execute ansi control
 sequences. This repository is currently a work in progress and might have
 frequent changes to design (will try to keep design changes to a minimum).
 
+## Platform Support
+ * Linux
+ * OSX
+ * Windows (tested on Windows 10)
+
 ## Example
 More details on using the library can be found in the `examples/` directory.
 Also https://github.com/ParagonPawns/term-inquiry is on of our projects that
